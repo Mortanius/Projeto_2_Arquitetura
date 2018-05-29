@@ -66,6 +66,7 @@ public class MyMIPS implements MIPS{
 	// comandos do tipo I
 	public static void comandoI(State state, int opCode, int rs, int rt, int immediate) throws IOException{
 		if (immediate >= 0b1000000000000000) {
+			
 			// converte de complemento a 2 16 bit para 32 bit
 			immediate = immediate + 0xffff0000;
 		}
