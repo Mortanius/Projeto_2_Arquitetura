@@ -189,11 +189,14 @@ public class MyMIPS implements MIPS{
 					break;
 				}
 				case FUNCT.slt: { // R[rd] = (R[rs] < R[rt]) ? 1 : 0
-					state.writeRegister(rd, (state.readRegister(rs) < state.readRegister(rs))? 1 : 0  );
+					state.writeRegister(rd, ( ( (int) state.readRegister(rs) ) 
+												< ( (int) state.readRegister(rt) ) ? 1 : 0 ) );
 					break;
 				}
 				case FUNCT.sltu: { 
 					// TODO sltu
+					state.writeRegister(rd, Integer.compareUnsigned( state.readRegister(rs),
+							state.readRegister(rt)) == -1 ? 1 : 0 );
 					break;
 				}
 				case FUNCT.sll: { // R[rd] = R[rt] << shamt
@@ -209,7 +212,7 @@ public class MyMIPS implements MIPS{
 					break;
 				}
 				case FUNCT.subu: {
-					// TODO subu
+					state.writeRegister(rd, state.readRegister(rs) - state.readRegister(rt));
 					break;
 				}
 				case FUNCT.div: {
